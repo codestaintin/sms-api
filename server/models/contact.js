@@ -30,7 +30,6 @@ export default (sequelize, DataTypes) => {
   Contact.removeAttribute('id');
 
   Contact.associate = (models) => {
-    // associations can be defined here
     Contact.hasMany(models.Message, {
       as: 'sender',
       foreignKey: 'senderId'
@@ -40,5 +39,9 @@ export default (sequelize, DataTypes) => {
       foreignKey: 'recipientId'
     })
   };
+  Contact.createRules = () => ({
+    name: 'required|min:2',
+    phoneNumber: ['required', 'min:11', 'max:14', 'regex:/^[0-9]+/']
+  });
   return Contact;
 };
