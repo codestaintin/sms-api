@@ -34,25 +34,23 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.ENUM('sent', 'read'),
       defaultValue: 'sent'
     },
-  }, {
-    timeStamp: false,
-    hooks: {
-      beforeCreate: (message) => {
-        message.sentOn = Date();
-      },
-  }
-  });
+  }, {});
   
   Message.associate = (models) => {
-    // associations can be defined here
     Message.belongsTo(models.Contact, {
       as: 'sender',
       foreignKey: 'senderId'
-    })
+    });
     Message.belongsTo(models.Contact, {
       as: 'recipient',
       foreignKey: 'recipientId'
-    })
+    });
   };
+
+  Message.createRules = () => ({
+    content: 'required|min:1',
+    senderId: ['required', 'min:11', 'max:14', 'regex:/^[0-9]+/'],
+    recipientId: ['required', 'min:11', 'max:14', 'regex:/^[0-9]+/']
+  });
   return Message;
 };

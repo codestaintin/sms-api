@@ -41,7 +41,11 @@ module.exports = {
         type: Sequelize.ENUM('sent', 'read'),
         defaultValue: 'sent'
       },
-      sentOn: {
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
       }
