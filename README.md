@@ -1,5 +1,5 @@
 # sms-api
-Simple SMS API
+Simple SMS API is a backend application for creating a contact and sending messages to other contacts
 
 ## API Documentation
 - [Documentation](https://documenter.getpostman.com/view/1969444/S11LrH85)
