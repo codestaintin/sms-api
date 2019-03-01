@@ -1,9 +1,7 @@
-import chai, { expect } from 'chai';
-import chaiHttp from 'chai-http';
+import { expect } from 'chai';
 import request from 'supertest';
 import server from '../server';
 
-chai.use(chaiHttp);
 
 describe('Tests for contact controller', () => {
   describe('Test for get contacts', () => {
