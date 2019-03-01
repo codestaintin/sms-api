@@ -46,7 +46,7 @@ export default class Contacts {
   }
 
   /**
-   * delete contact
+   * Delete contact
    * @param req - HTTP Request
    * @param res - HTTP Response
    * @returns {object} - message object
@@ -71,7 +71,12 @@ export default class Contacts {
       return res.status(500).json({ message: 'An error occurred during this operation', error})
     }
   }
-
+  /**
+   * Get all contact
+   * @param req - HTTP Request
+   * @param res - HTTP Response
+   * @returns {object} - contacts object
+   */
   static async listContacts(req, res) {
     const allContacts = await Contact.findAll();
     if (allContacts.length === 0) {

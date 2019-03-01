@@ -4,7 +4,8 @@
   "description": "A simple sms API",
   "main": "server.js",
   "scripts": {
-    "test": "npm test",
+    "test": "npm run pretest && nyc --reporter=html mocha server/tests/*.spec.js --compilers js:@babel/register --timeout 10000 && nyc report",
+    "pretest": "export NODE_ENV=test && sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all",
     "start:server": "nodemon --exec babel-node server.js"
   },
   "dependencies": {
@@ -37,8 +38,11 @@
     "eslint-loader": "^2.1.1",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
+    "regenerator-runtime": "^0.12.1",
     "mocha": "^5.2.0",
-    "nodemon": "^1.18.9"
+    "nodemon": "^1.18.9",
+    "nyc": "^13.3.0",
+    "supertest": "^3.4.2"
   },
   "repository": {
     "type": "git",
